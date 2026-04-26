@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог — Setacam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<!-- ─── CURSOR ─── -->
+<div id="cursor">
+    <div class="cursor-ring"></div>
+    <div class="cursor-dot"></div>
+</div>
+
+<!-- ─── NAV ─── -->
+<nav id="nav" class="scrolled">
+    <a href="index.html" class="nav-logo">
+        <img src="logo-white.svg" alt="Setacam" class="nav-logo-img">
+        <span class="nav-logo-sub mono">Фрийланс CNC обработка</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html#work">Проекти</a></li>
+        <li><a href="index.html#services">Услуги</a></li>
+        <li><a href="index.html#process">Процес</a></li>
+        <li><a href="index.html#about">За мен</a></li>
+        <li><a href="blog.html" class="nav-active">Блог</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Контакт</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Меню">
+        <span></span><span></span>
+    </button>
+</nav>
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobile-menu">
+    <ul>
+        <li><a href="index.html#work">Проекти</a></li>
+        <li><a href="index.html#services">Услуги</a></li>
+        <li><a href="index.html#process">Процес</a></li>
+        <li><a href="index.html#about">За мен</a></li>
+        <li><a href="blog.html">Блог</a></li>
+        <li><a href="index.html#contact">Контакт</a></li>
+    </ul>
+</div>
+
+<!-- ─── BLOG HEADER ─── -->
+<header class="blog-header">
+    <div class="blog-header-inner">
+        <p class="hero-eyebrow" style="opacity:1;">
+            <span class="eyebrow-line"></span>
+            Технически бележки и проектни дневници
+        </p>
+        <h1 class="blog-page-title">Записки от<br><em>работилницата.</em></h1>
+        <p class="blog-page-sub">Мисли за обработката, материалите, настройките и занаята — директно от машината.</p>
+    </div>
+</header>
+
+<!-- ─── BLOG GRID ─── -->
+<main class="blog-main">
+    <div class="blog-grid">
+
+        <article class="blog-card blog-card--featured">
+            <a href="blog-post.html?id=1" class="blog-card-img-wrap">
+                <div class="blog-card-img bg-1"></div>
+                <span class="blog-card-tag mono sm">Материали</span>
+            </a>
+            <div class="blog-card-body">
+                <p class="blog-card-meta mono sm">
+                    <span class="blog-card-date">15 ЯНУ 2025</span>
+                    <span class="ticker-sep">·</span>
+                    <span>8 мин четене</span>
+                </p>
+                <h2 class="blog-card-title">
+                    <a href="blog-post.html?id=1">7075 срещу 6061: кога да избереш по-твърдата сплав</a>
+                </h2>
+                <p class="blog-card-excerpt">Двете сплави доминират в алуминиевата обработка — но изборът между тях не е въпрос само на якост. Разглеждам обработваемостта, цената, анодирането и кога 6061 е всъщност по-умният избор.</p>
+                <a href="blog-post.html?id=1" class="blog-read-more mono sm">ПРОЧЕТИ →</a>
+            </div>
+        </article>
+
+        <article class="blog-card">
+            <a href="blog-post.html?id=2" class="blog-card-img-wrap">
+                <div class="blog-card-img bg-2"></div>
+                <span class="blog-card-tag mono sm">CAM</span>
+            </a>
+            <div class="blog-card-body">
+                <p class="blog-card-meta mono sm">
+                    <span class="blog-card-date">03 ДЕК 2024</span>
+                    <span class="ticker-sep">·</span>
+                    <span>6 мин четене</span>
+                </p>
+                <h2 class="blog-card-title">
+                    <a href="blog-post.html?id=2">Стратегии за инструментален път при джобове с тесни радиуси</a>
+                </h2>
+                <p class="blog-card-excerpt">Малките радиуси убиват инструменти и разрушават допуски. Ето как подхождам към тях в CAM — от избора на инструмент до адаптивното чистово преминаване.</p>
+                <a href="blog-post.html?id=2" class="blog-read-more mono sm">ПРОЧЕТИ →</a>
+            </div>
+        </article>
+
+        <article class="blog-card">
+            <a href="blog-post.html?id=3" class="blog-card-img-wrap">
+                <div class="blog-card-img bg-3"></div>
+                <span class="blog-card-tag mono sm">Допуски</span>
+            </a>
+            <div class="blog-card-body">
+                <p class="blog-card-meta mono sm">
+                    <span class="blog-card-date">18 НОЕ 2024</span>
+                    <span class="ticker-sep">·</span>
+                    <span>5 мин четене</span>
+                </p>
+                <h2 class="blog-card-title">
+                    <a href="blog-post.html?id=3">Защо ±0.01 мм не е просто число в техническия чертеж</a>
+                </h2>
+                <p class="blog-card-excerpt">Допуските в чертежа изглеждат като стандарт — но зад всяко число стои решение за инструмент, закрепване, температура и измерване. Разказвам как гарантирам повторяемост.</p>
+                <a href="blog-post.html?id=3" class="blog-read-more mono sm">ПРОЧЕТИ →</a>
+            </div>
+        </article>
+
+        <article class="blog-card">
+            <a href="blog-post.html?id=4" class="blog-card-img-wrap">
+                <div class="blog-card-img bg-4"></div>
+                <span class="blog-card-tag mono sm">DFM</span>
+            </a>
+            <div class="blog-card-body">
+                <p class="blog-card-meta mono sm">
+                    <span class="blog-card-date">02 ОКТ 2024</span>
+                    <span class="ticker-sep">·</span>
+                    <span>7 мин четене</span>
+                </p>
+                <h2 class="blog-card-title">
+                    <a href="blog-post.html?id=4">Петте DFM грешки, които виждам в почти всеки STEP файл</a>
+                </h2>
+                <p class="blog-card-excerpt">Дизайнът за производимост не е само за инженерите в завод. Показвам петте най-чести проблема, които откривам при преглед на файлове от клиенти — и как да ги избегнеш.</p>
+                <a href="blog-post.html?id=4" class="blog-read-more mono sm">ПРОЧЕТИ →</a>
+            </div>
+        </article>
+
+        <article class="blog-card">
+            <a href="blog-post.html?id=5" class="blog-card-img-wrap">
+                <div class="blog-card-img bg-5"></div>
+                <span class="blog-card-tag mono sm">Повърхности</span>
+            </a>
+            <div class="blog-card-body">
+                <p class="blog-card-meta mono sm">
+                    <span class="blog-card-date">14 АВГ 2024</span>
+                    <span class="ticker-sep">·</span>
+                    <span>4 мин четене</span>
+                </p>
+                <h2 class="blog-card-title">
+                    <a href="blog-post.html?id=5">Анодиране: какво трябва да знае машинистът преди финишната обработка</a>
+                </h2>
+                <p class="blog-card-excerpt">Анодирането добавя дебелина — и ако не планираш за нея, допуските се провалят. Разглеждам как да компенсирам размерите в зависимост от вида анодиране.</p>
+                <a href="blog-post.html?id=5" class="blog-read-more mono sm">ПРОЧЕТИ →</a>
+            </div>
+        </article>
+
+        <article class="blog-card">
+            <a href="blog-post.html?id=6" class="blog-card-img-wrap">
+                <div class="blog-card-img bg-6"></div>
+                <span class="blog-card-tag mono sm">Прототипи</span>
+            </a>
+            <div class="blog-card-body">
+                <p class="blog-card-meta mono sm">
+                    <span class="blog-card-date">20 ЮЛИ 2024</span>
+                    <span class="ticker-sep">·</span>
+                    <span>6 мин четене</span>
+                </p>
+                <h2 class="blog-card-title">
+                    <a href="blog-post.html?id=6">От STEP файл до готов детайл за 48 часа — как протича процесът</a>
+                </h2>
+                <p class="blog-card-excerpt">Бързото прототипиране изисква не само скоростна машина — изисква готов работен процес. Споделям как изглежда едно бързо поръчване от получаване на файла до изпращане.</p>
+                <a href="blog-post.html?id=6" class="blog-read-more mono sm">ПРОЧЕТИ →</a>
+            </div>
+        </article>
+
+    </div>
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <a href="index.html" class="footer-logo"><img src="logo-white.svg" alt="Setacam" class="footer-logo-img"></a>
+    <ul class="footer-links">
+        <li><a href="index.html#work">Проекти</a></li>
+        <li><a href="index.html#services">Услуги</a></li>
+        <li><a href="index.html#process">Процес</a></li>
+        <li><a href="index.html#contact">Контакт</a></li>
+    </ul>
+    <p class="footer-copy mono sm">© 2024 Setacam — Фрийланс алуминиева обработка</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Lenis
+    if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, syncTouch: false });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(t => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
+        window._lenis = lenis;
+    }
+
+    // Cursor
+    const el  = document.getElementById('cursor');
+    const ring = el?.querySelector('.cursor-ring');
+    const dot  = el?.querySelector('.cursor-dot');
+    if (el) {
+        let mx = -200, my = -200, rx = -200, ry = -200;
+        window.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+        }, { passive: true });
+        (function tick() {
+            rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1;
+            ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+            requestAnimationFrame(tick);
+        })();
+        document.querySelectorAll('a, button').forEach(a => {
+            a.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'), { passive: true });
+            a.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'), { passive: true });
+        });
+    }
+
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    ScrollTrigger.create({
+        start: 'top -50',
+        onUpdate: s => nav.classList.toggle('scrolled', s.progress > 0)
+    });
+
+    // Mobile menu
+    const toggle = document.getElementById('nav-toggle');
+    const menu   = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+        let open = false;
+        toggle.addEventListener('click', () => {
+            open = !open;
+            menu.classList.toggle('open', open);
+            const spans = toggle.querySelectorAll('span');
+            gsap.to(spans[0], { rotate: open ?  45 : 0, y: open ?  6 : 0, duration: 0.3 });
+            gsap.to(spans[1], { rotate: open ? -45 : 0, y: open ? -6 : 0, duration: 0.3 });
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            open = false; menu.classList.remove('open');
+            gsap.to(toggle.querySelectorAll('span'), { rotate: 0, y: 0, duration: 0.3 });
+        }));
+    }
+
+    // Scroll anims
+    gsap.from('.blog-header-inner > *', {
+        opacity: 0, y: 30, duration: 0.9, stagger: 0.15, ease: 'power2.out', delay: 0.1
+    });
+    gsap.from('.blog-card', {
+        scrollTrigger: { trigger: '.blog-grid', start: 'top 80%' },
+        opacity: 0, y: 40, duration: 0.75, stagger: { amount: 0.6 }, ease: 'power2.out'
+    });
+});
+</script>
+</body>
+</html>

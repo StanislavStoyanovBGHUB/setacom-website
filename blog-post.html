@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Блог пост — Setacam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<!-- ─── CURSOR ─── -->
+<div id="cursor">
+    <div class="cursor-ring"></div>
+    <div class="cursor-dot"></div>
+</div>
+
+<!-- ─── NAV ─── -->
+<nav id="nav" class="scrolled">
+    <a href="index.html" class="nav-logo">
+        <img src="logo-white.svg" alt="Setacam" class="nav-logo-img">
+        <span class="nav-logo-sub mono">Фрийланс CNC обработка</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html#work">Проекти</a></li>
+        <li><a href="index.html#services">Услуги</a></li>
+        <li><a href="index.html#process">Процес</a></li>
+        <li><a href="index.html#about">За мен</a></li>
+        <li><a href="blog.html" class="nav-active">Блог</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Контакт</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Меню">
+        <span></span><span></span>
+    </button>
+</nav>
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobile-menu">
+    <ul>
+        <li><a href="index.html#work">Проекти</a></li>
+        <li><a href="index.html#services">Услуги</a></li>
+        <li><a href="index.html#process">Процес</a></li>
+        <li><a href="index.html#about">За мен</a></li>
+        <li><a href="blog.html">Блог</a></li>
+        <li><a href="index.html#contact">Контакт</a></li>
+    </ul>
+</div>
+
+<!-- ─── POST HERO ─── -->
+<div class="post-hero" id="post-hero">
+    <div class="post-hero-img" id="post-hero-img"></div>
+    <div class="post-hero-overlay"></div>
+    <div class="post-hero-content">
+        <a href="blog.html" class="post-back mono sm">← ОБРАТНО КЪМ БЛОГА</a>
+        <span class="blog-card-tag mono sm" id="post-tag">Категория</span>
+        <h1 class="post-title" id="post-title">Заглавие на поста</h1>
+        <p class="post-byline mono sm">
+            <span id="post-date">01 ЯНУ 2025</span>
+            <span class="ticker-sep">·</span>
+            <span id="post-read">5 мин четене</span>
+        </p>
+    </div>
+</div>
+
+<!-- ─── ARTICLE ─── -->
+<div class="post-layout">
+    <aside class="post-sidebar">
+        <div class="sidebar-sticky">
+            <p class="sidebar-label mono sm">Съдържание</p>
+            <nav class="toc" id="toc"></nav>
+            <div class="sidebar-cta">
+                <p class="mono sm dim">Имаш проект?</p>
+                <a href="index.html#contact" class="btn" style="font-size:12px;padding:0.6rem 1.2rem;">Заяви оферта</a>
+            </div>
+        </div>
+    </aside>
+
+    <article class="post-article" id="post-article">
+        <!-- content injected by JS -->
+    </article>
+</div>
+
+<!-- ─── RELATED POSTS ─── -->
+<section class="related-posts">
+    <p class="section-label">Още статии</p>
+    <div class="blog-grid related-grid" id="related-grid"></div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <a href="index.html" class="footer-logo"><img src="logo-white.svg" alt="Setacam" class="footer-logo-img"></a>
+    <ul class="footer-links">
+        <li><a href="index.html#work">Проекти</a></li>
+        <li><a href="index.html#services">Услуги</a></li>
+        <li><a href="index.html#process">Процес</a></li>
+        <li><a href="index.html#contact">Контакт</a></li>
+    </ul>
+    <p class="footer-copy mono sm">© 2024 Setacam — Фрийланс алуминиева обработка</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+/* ─── BLOG POST DATA ─── */
+const POSTS = {
+    1: {
+        tag: 'Материали',
+        title: '7075 срещу 6061: кога да избереш по-твърдата сплав',
+        date: '15 ЯНУ 2025',
+        read: '8 мин четене',
+        bg: 'hero-bg.png',
+        content: `
+<h2 id="intro">Двете сплави, едно решение</h2>
+<p>Когато клиент изпраща STEP файл, почти винаги съм изправен пред същия въпрос: 6061 или 7075? И двете са алуминиеви сплави — но разликата между тях е значима, особено когато говорим за летателни апарати, роботика или високо натоварени конструкции.</p>
+<p>Накратко: 7075-T6 е около 70% по-здрав от 6061-T6 при опън. Но якостта е само едната страна на монетата.</p>
+
+<h2 id="obrabotka">Обработваемост</h2>
+<p>6061 е признат стандарт в обработката. Реже лесно, запазва остри ъгли и е много прощаващ при избора на параметри. 7075 е по-твърд — и по-склонен към натрупване на материал по режещия ръб. Изисква по-агресивно охлаждане и по-внимателен избор на инструмент.</p>
+<p>Ако проектираш детайл с дълбоки джобове и тесни радиуси, 6061 ще ти спести главоболие. 7075 е оправдан, когато механичните изисквания го налагат — не просто защото „е по-добър".</p>
+
+<h2 id="anodirane">Анодиране и повърхностна обработка</h2>
+<p>6061 анодира много добре — получаваш еднороден, естетичен слой. 7075 е по-капризен при анодиране: поради по-високото съдържание на цинк финишът понякога излиза неравномерен. Твърдото анодиране е особено трудно при 7075 и изисква специализиран доставчик.</p>
+
+<h2 id="cena">Цена и наличност</h2>
+<p>7075 е значително по-скъп — обикновено 1.5–2 пъти. Наличността е по-ограничена, особено в нестандартни дебелини. Ако планираш серийно производство, ценовата разлика се натрупва бързо.</p>
+
+<h2 id="koga">Кога да изберем кое</h2>
+<p><strong>Избери 6061 когато:</strong> детайлът е за прототип, изисква анодиране, серията е голяма, или натоварванията са умерени.</p>
+<p><strong>Избери 7075 когато:</strong> масата е критична (авиация, дронове), натоварванията са екстремни, или детайлът работи на ниски температури.</p>
+
+<h2 id="zakl">Заключение</h2>
+<p>Не съществува „по-добра" сплав — съществува правилна сплав за конкретен детайл. Ако не си сигурен, изпрати ми чертежа и ще дам DFM обратна връзка безплатно.</p>
+        `
+    },
+    2: {
+        tag: 'CAM',
+        title: 'Стратегии за инструментален път при джобове с тесни радиуси',
+        date: '03 ДЕК 2024',
+        read: '6 мин четене',
+        bg: 'hero-bg.png',
+        content: `
+<h2 id="intro">Проблемът с малките радиуси</h2>
+<p>Малките вътрешни радиуси в джобове са сред най-честите причини за счупени инструменти и извън допуск детайли. Причината е проста: при навлизане в ъгъл, инструментът внезапно е обкръжен от материал от три страни и натоварването рязко нараства.</p>
+
+<h2 id="izbor">Избор на инструмент</h2>
+<p>Правилото е просто: радиусът на инструмента трябва да е по-малък от вътрешния радиус на джоба. Оставям поне 15–20% разлика. За радиус от 3 мм — използвам фреза Ø5 или по-малка, не Ø6.</p>
+<p>При дълбоки джобове с малки радиуси преминавам към фрези с голямо отношение L/D и намалявам скоростта на подаване с 30–40% спрямо стандартните параметри.</p>
+
+<h2 id="strategia">Стратегия на пътя</h2>
+<p>Адаптивното чистово преминаване (trochoidal milling) е незаменимо при тесни радиуси. Вместо директна обработка, инструментът навлиза с малки дъги — натоварването е константно и предвидимо.</p>
+<p>При финишното преминаване оставям 0.1–0.15 мм оставен материал и правя финален пас само с 0.05 мм дълбочина — получавам чиста, изчистена повърхност без вибрации.</p>
+
+<h2 id="cooling">Охлаждане и отстраняване на стружки</h2>
+<p>При дълбоки джобове стружките са основен проблем — натрупват се в ъглите и причиняват прерязване. Използвам въздушен поток под налягане насочен директно към джоба, комбиниран с периодично извличане на инструмента за изчистване.</p>
+
+<h2 id="zakl">Заключение</h2>
+<p>Малките радиуси изискват внимание — но са напълно управляеми с правилните параметри и стратегия. Ако имаш детайл с подобна геометрия, изпрати ми го за DFM преглед.</p>
+        `
+    },
+    3: {
+        tag: 'Допуски',
+        title: 'Защо ±0.01 мм не е просто число в техническия чертеж',
+        date: '18 НОЕ 2024',
+        read: '5 мин четене',
+        bg: 'hero-bg.png',
+        content: `
+<h2 id="intro">Допускът като система</h2>
+<p>Когато виждам ±0.01 мм в чертеж, това не е просто число — то е система от решения. Инструмент, закрепване, охлаждане, температура, измерване. Всеки от тези фактори трябва да е под контрол едновременно.</p>
+
+<h2 id="topline">Температурните разширения</h2>
+<p>Алуминият се разширява с около 23 µm/m·°C. При детайл с дължина 200 мм и промяна на температурата само с 2°C — размерът се мени с ~9 µm. Това е близо до половината от допуска ±0.01 мм само от температура.</p>
+<p>Затова обработвам критични детайли след загряване на машината и проверявам с инструменти в термична равновесия с работилницата.</p>
+
+<h2 id="zakrepvane">Закрепването е всичко</h2>
+<p>Деформацията при закрепване е тиха причина за излезли от допуск детайли. При тънки стени или детайли с асиметрична маса, прекалено затягане изкривява детайла по време на обработка — след освобождаване се върне и размерите са грешни.</p>
+
+<h2 id="izmerване">Измерване при условия</h2>
+<p>Правя финалните измервания с детайла оставен да се охлади напълно. Използвам микрометри и нутомери — не само шублери. За критични отвори правя 3–4 измервания на различни ъгли и дълбочини.</p>
+
+<h2 id="zakl">Заключение</h2>
+<p>±0.01 мм е постижимо — но изисква цялата система да работи заедно. Не го гарантирам на всеки детайл автоматично, но когато е необходимо, знам как да го постигна.</p>
+        `
+    },
+    4: {
+        tag: 'DFM',
+        title: 'Петте DFM грешки, които виждам в почти всеки STEP файл',
+        date: '02 ОКТ 2024',
+        read: '7 мин четене',
+        bg: 'hero-bg.png',
+        content: `
+<h2 id="intro">DFM не е критика — е партньорство</h2>
+<p>Когато преглеждам STEP файл, не търся грешки за да покажа проблем. Търся места, където малка промяна в дизайна може да спести значителни разходи или да подобри качеството. Това е DFM — Дизайн за Производимост.</p>
+
+<h2 id="1">1. Нулев вътрешен радиус в ъглите</h2>
+<p>Абсолютно невъзможно с ротационен инструмент. Всеки вътрешен ъгъл се нуждае от радиус поне равен на половината диаметър на инструмента. Минималният практичен радиус е около 0.5 мм — под него цената рязко нараства.</p>
+
+<h2 id="2">2. Прекалено дълбоки джобове спрямо ширината</h2>
+<p>Когато дълбочината надвишава ширината по-малка от 3:1, инструментът работи в затруднени условия. Резултатът: вибрации, лош финиш, висока цена. Когато е технически допустимо, препоръчвам добавяне на разтоварващи джобове.</p>
+
+<h2 id="3">3. Резби, по-дълги от необходимото</h2>
+<p>Ефективната дължина на зацепване при алуминий е 1.5–2 пъти диаметъра на резбата. По-дълга резба не добавя якост — само увеличава риска при нарязване. M6 в алуминий: 9–12 мм дълбочина е достатъчна.</p>
+
+<h2 id="4">4. Нереалистично тесни допуски навсякъде</h2>
+<p>Не всяка повърхност изисква ±0.01 мм. Когато виждам един и същ строг допуск навсякъде в чертежа, знам, че инженерът не е мислил за производимост. Строгите допуски трябва да се резервират само за функционалните повърхности.</p>
+
+<h2 id="5">5. Детайли, изискващи обработка от повече от 4 страни</h2>
+<p>Всяка смяна на установа добавя грешка от базиране. Детайл, изискващ 5 или 6 установа, е детайл с риск от натрупване на грешки. Малко ревизия на дизайна може да намали установите и да подобри точността.</p>
+
+<h2 id="zakl">Заключение</h2>
+<p>DFM прегледът, който включвам стандартно, търси точно тези неща. Изпрати файла — ако намеря нещо, ще ти кажа преди да режа.</p>
+        `
+    },
+    5: {
+        tag: 'Повърхности',
+        title: 'Анодиране: какво трябва да знае машинистът преди финишната обработка',
+        date: '14 АВГ 2024',
+        read: '4 мин четене',
+        bg: 'hero-bg.png',
+        content: `
+<h2 id="intro">Анодирането добавя дебелина</h2>
+<p>Анодирането е електрохимичен процес, при който върху алуминия расте оксиден слой. Ключовото: слоят расте и навътре, и навън. Около половината от дебелината на слоя прониква в детайла, другата половина — върху повърхността.</p>
+
+<h2 id="tipove">Видове анодиране и дебелини</h2>
+<p>Прозрачното декоративно анодиране добавя около 5–8 µm. Цветното — 8–15 µm. Твърдото анодиране (клас III) — 25–75 µm. Тези числа трябва да са в чертежа <em>преди</em> да реша финалните размери.</p>
+
+<h2 id="kompensaciq">Компенсация на размерите</h2>
+<p>При прозрачно анодиране обработвам с добавка +5 µm на диаметър (т.е. +2.5 µm радиус). При твърдо анодиране — добавката зависи от конкретните изисквания и доставчика. Критичните отвори обработвам на минималния размер на допуска.</p>
+<p>За отвори с H7 посадка при твърдо анодиране — обработвам с добавка и след анодиране правя финална шлифовка или хонинговане.</p>
+
+<h2 id="povarhnost">Финиш преди анодиране</h2>
+<p>Анодирането усилва всеки дефект на повърхността. Драскотини, следи от инструмента, грапавини — всичко се вижда след анодиране, понякога по-отчетливо. Ако клиентът иска естетичен финиш, полирам до Ra 0.8 или по-добро преди предаване за анодиране.</p>
+
+<h2 id="zakl">Заключение</h2>
+<p>Анодирането и обработката трябва да са планирани заедно от самото начало. Ако имаш детайл за анодиране — кажи ми предварително и ще сметна компенсациите в програмата.</p>
+        `
+    },
+    6: {
+        tag: 'Прототипи',
+        title: 'От STEP файл до готов детайл за 48 часа — как протича процесът',
+        date: '20 ЮЛИ 2024',
+        read: '6 мин четене',
+        bg: 'hero-bg.png',
+        content: `
+<h2 id="intro">48 часа е реалистично</h2>
+<p>Не за всеки детайл — но за стандартна геометрия с 3-осна обработка и наличен материал, 48 часа от получаване на файла до изпращане е постижима цел. Ето как изглежда процесът.</p>
+
+<h2 id="h1">Час 0–2: Преглед и оферта</h2>
+<p>Получавам STEP файл, преглеждам геометрията, идентифицирам критичните характеристики и изчислявам времето за обработка. Изпращам оферта с уточнени допуски, материал и срок. Ако имам въпроси — задавам ги веднага.</p>
+
+<h2 id="h2">Час 2–6: CAM програмиране</h2>
+<p>След потвърждение от клиента, импортирам файла в CAM софтуера. Дефинирам установите, избирам инструменти, генерирам и симулирам пътищата. Проверявам за сблъсъци и оптимизирам последователността.</p>
+
+<h2 id="h3">Час 6–18: Обработка</h2>
+<p>Нарязвам материала, фиксирам, нулирам. Обработката протича с периодична проверка на размерите на критичните точки. При необходимост — корекция на програмата между установите.</p>
+
+<h2 id="h4">Час 18–24: Контрол и финиш</h2>
+<p>Пълен размерен контрол по чертеж. Дебурване, почистване. Снимки за клиента. Ако е необходим специален финиш — изпращам за анодиране (добавя 1–2 дни).</p>
+
+<h2 id="h5">Час 24–48: Доставка</h2>
+<p>Пакетирам детайла в защитна пяна, изпращам с куриер. Клиентът получава номер за проследяване и снимки на готовия детайл.</p>
+
+<h2 id="zakl">Заключение</h2>
+<p>Скоростта идва от подготовката — не от бързане. Ако детайлът е добре дефиниран и материалът е наличен, 48 часа е стандартен срок за мен. Изпрати файла и ще кажа конкретно.</p>
+        `
+    },
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Lenis
+    if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, syncTouch: false });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(t => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
+        window._lenis = lenis;
+    }
+
+    // Cursor
+    const el   = document.getElementById('cursor');
+    const ring = el?.querySelector('.cursor-ring');
+    const dot  = el?.querySelector('.cursor-dot');
+    if (el) {
+        let mx = -200, my = -200, rx = -200, ry = -200;
+        window.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+        }, { passive: true });
+        (function tick() {
+            rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1;
+            ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+            requestAnimationFrame(tick);
+        })();
+        document.querySelectorAll('a, button').forEach(a => {
+            a.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'), { passive: true });
+            a.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'), { passive: true });
+        });
+    }
+
+    // Nav
+    const nav = document.getElementById('nav');
+    ScrollTrigger.create({
+        start: 'top -50',
+        onUpdate: s => nav.classList.toggle('scrolled', s.progress > 0)
+    });
+
+    // Mobile menu
+    const toggle = document.getElementById('nav-toggle');
+    const menu   = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+        let open = false;
+        toggle.addEventListener('click', () => {
+            open = !open;
+            menu.classList.toggle('open', open);
+            const spans = toggle.querySelectorAll('span');
+            gsap.to(spans[0], { rotate: open ?  45 : 0, y: open ?  6 : 0, duration: 0.3 });
+            gsap.to(spans[1], { rotate: open ? -45 : 0, y: open ? -6 : 0, duration: 0.3 });
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            open = false; menu.classList.remove('open');
+            gsap.to(toggle.querySelectorAll('span'), { rotate: 0, y: 0, duration: 0.3 });
+        }));
+    }
+
+    // Load post
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id')) || 1;
+    const post = POSTS[id];
+    if (!post) { window.location.href = 'blog.html'; return; }
+
+    document.title = post.title + ' — Setacam';
+    document.getElementById('page-title').textContent = post.title + ' — Setacam';
+    document.getElementById('post-tag').textContent = post.tag;
+    document.getElementById('post-title').textContent = post.title;
+    document.getElementById('post-date').textContent = post.date;
+    document.getElementById('post-read').textContent = post.read;
+    document.getElementById('post-hero-img').style.backgroundImage = `url("${post.bg}")`;
+    document.getElementById('post-article').innerHTML = post.content;
+
+    // Build TOC
+    const headings = document.querySelectorAll('.post-article h2');
+    const tocEl = document.getElementById('toc');
+    headings.forEach(h => {
+        const a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.textContent = h.textContent;
+        a.className = 'toc-link mono sm';
+        tocEl.appendChild(a);
+
+        ScrollTrigger.create({
+            trigger: h,
+            start: 'top 40%',
+            end: 'bottom 40%',
+            onToggle: self => {
+                tocEl.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+                if (self.isActive) a.classList.add('active');
+            }
+        });
+    });
+
+    // Related posts
+    const related = Object.entries(POSTS)
+        .filter(([k]) => +k !== id)
+        .slice(0, 3);
+    const relGrid = document.getElementById('related-grid');
+    related.forEach(([k, p]) => {
+        relGrid.innerHTML += `
+        <article class="blog-card">
+            <a href="blog-post.html?id=${k}" class="blog-card-img-wrap">
+                <div class="blog-card-img bg-${k}"></div>
+                <span class="blog-card-tag mono sm">${p.tag}</span>
+            </a>
+            <div class="blog-card-body">
+                <p class="blog-card-meta mono sm">
+                    <span class="blog-card-date">${p.date}</span>
+                    <span class="ticker-sep">·</span>
+                    <span>${p.read}</span>
+                </p>
+                <h2 class="blog-card-title"><a href="blog-post.html?id=${k}">${p.title}</a></h2>
+            </div>
+        </article>`;
+    });
+
+    // Scroll anims
+    gsap.from('.post-hero-content > *', {
+        opacity: 0, y: 30, duration: 0.9, stagger: 0.15, ease: 'power2.out', delay: 0.1
+    });
+    gsap.from('.post-article > *', {
+        scrollTrigger: { trigger: '.post-article', start: 'top 85%' },
+        opacity: 0, y: 20, duration: 0.6, stagger: 0.06, ease: 'power2.out'
+    });
+    gsap.from('.blog-card', {
+        scrollTrigger: { trigger: '.related-posts', start: 'top 80%' },
+        opacity: 0, y: 30, duration: 0.7, stagger: 0.15, ease: 'power2.out'
+    });
+});
+</script>
+</body>
+</html>

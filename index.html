@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setacam — Прецизна Алуминиева Обработка</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ─── LOADER ─── -->
+<div id="loader">
+    <div class="loader-inner">
+        <img src="logo-white.svg" class="loader-logo-img" alt="Setacam">
+        <div class="loader-bar-wrap"><div class="loader-bar" id="loader-bar"></div></div>
+        <span class="loader-status" id="loader-status">ИНИЦИАЛИЗАЦИЯ...</span>
+    </div>
+</div>
+
+<!-- ─── CURSOR ─── -->
+<div id="cursor">
+    <div class="cursor-ring"></div>
+    <div class="cursor-dot"></div>
+</div>
+
+<!-- ─── NAV ─── -->
+<nav id="nav">
+    <a href="#" class="nav-logo">
+        <img src="logo-white.svg" alt="Setacam" class="nav-logo-img">
+        <span class="nav-logo-sub mono">Фрийланс CNC обработка</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#work">Проекти</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#process">Процес</a></li>
+        <li><a href="#about">За мен</a></li>
+        <li><a href="blog.html">Блог</a></li>
+        <li><a href="#contact" class="nav-cta">Контакт</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Меню">
+        <span></span><span></span>
+    </button>
+</nav>
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobile-menu">
+    <ul>
+        <li><a href="#work">Проекти</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#process">Процес</a></li>
+        <li><a href="#about">За мен</a></li>
+        <li><a href="blog.html">Блог</a></li>
+        <li><a href="#contact">Контакт</a></li>
+    </ul>
+</div>
+
+<!-- ─── VIDEO HERO (scrub) ─── -->
+<!-- ─── HERO (static background) ─── -->
+<section id="hero">
+    <!-- static photo background -->
+    <div class="hero-bg-img"></div>
+    <!-- 3D WebGL decoration -->
+    <canvas id="hero-canvas"></canvas>
+
+    <div class="hero-corner hero-corner--tl">
+        <span class="mono sm">SYS.READY</span>
+        <span class="blink">▋</span>
+    </div>
+    <div class="hero-corner hero-corner--tr">
+        <div class="hero-coords">
+            <span class="mono sm">X <span id="cx" class="coord-val">000.000</span></span>
+            <span class="mono sm">Y <span id="cy" class="coord-val">000.000</span></span>
+            <span class="mono sm">Z <span id="cz" class="coord-val">000.000</span></span>
+        </div>
+    </div>
+
+    <div class="hero-content">
+        <p class="hero-eyebrow">
+            <span class="eyebrow-line"></span>
+            Фрийланс CNC Обработка — Алуминий
+        </p>
+        <h1 class="hero-title" id="hero-title">
+            <span class="title-line">Точни допуски.</span>
+            <span class="title-line title-italic">Чисти повърхности.</span>
+            <span class="title-line">По чертеж.</span>
+        </h1>
+        <p class="hero-sub" id="hero-sub">
+            Прецизна алуминиева обработка за прототипи, детайли по поръчка
+            и малкосерийно производство. Всяко рязане е обмислено,
+            всяка повърхност — целенасочена.
+        </p>
+    </div>
+
+    <div class="hero-meta" id="hero-meta">
+        <div class="hero-meta-item">
+            <span class="mono sm dim">АКС</span>
+            <span>3-осна и 4-осна фреза</span>
+        </div>
+        <div class="hero-meta-item">
+            <span class="mono sm dim">МАТ</span>
+            <span>6061 · 7075 · 2024</span>
+        </div>
+        <div class="hero-meta-item">
+            <span class="mono sm dim">ТОЛ</span>
+            <span>±0.01 мм допуски</span>
+        </div>
+    </div>
+
+    <div class="hero-scroll-hint" id="hero-scroll">
+        <div class="hero-scroll-line"></div>
+        <span class="mono sm">СКРОЛ</span>
+    </div>
+
+    <div class="hero-corner hero-corner--br">
+        <span class="mono sm dim">v2.4.1 — BG</span>
+    </div>
+</section>
+
+<!-- ─── VIDEO SCRUB ─── -->
+<div class="vscrub-wrap" id="vscrub-wrap">
+    <div class="vscrub-sticky">
+        <video id="scrub-video" src="video.mp4" muted playsinline preload="auto"></video>
+        <canvas id="scrub-canvas"></canvas>
+        <div class="vscrub-overlay">
+            <span class="mono sm">ПРОИЗВОДСТВЕН ПРОЦЕС</span>
+        </div>
+        <div class="vscrub-progress-wrap" id="vscrub-progress">
+            <div class="vscrub-bar"><div class="vscrub-bar-fill" id="vscrub-bar-fill"></div></div>
+            <span class="mono sm vscrub-pct" id="vscrub-pct">0%</span>
+        </div>
+    </div>
+</div>
+
+<!-- ─── TICKER ─── -->
+<div class="ticker-wrap">
+    <div class="ticker-track" id="ticker-track">
+        <div class="ticker-content">
+            <span>ПРЕЦИЗНОСТ ±0.01мм</span><span class="ticker-sep">◆</span>
+            <span>6061 · 7075 · 2024 · 5083 · 6063</span><span class="ticker-sep">◆</span>
+            <span>3-ОСНА И 4-ОСНА ФРЕЗА</span><span class="ticker-sep">◆</span>
+            <span>ДОСТАВКА 3–10 РАБОТНИ ДНИ</span><span class="ticker-sep">◆</span>
+            <span>ПРОТОТИПИ · ДЕТАЙЛИ · СЕРИИ</span><span class="ticker-sep">◆</span>
+            <span>DFM ПРЕГЛЕД ВКЛЮЧЕН</span><span class="ticker-sep">◆</span>
+        </div>
+        <div class="ticker-content" aria-hidden="true">
+            <span>ПРЕЦИЗНОСТ ±0.01мм</span><span class="ticker-sep">◆</span>
+            <span>6061 · 7075 · 2024 · 5083 · 6063</span><span class="ticker-sep">◆</span>
+            <span>3-ОСНА И 4-ОСНА ФРЕЗА</span><span class="ticker-sep">◆</span>
+            <span>ДОСТАВКА 3–10 РАБОТНИ ДНИ</span><span class="ticker-sep">◆</span>
+            <span>ПРОТОТИПИ · ДЕТАЙЛИ · СЕРИИ</span><span class="ticker-sep">◆</span>
+            <span>DFM ПРЕГЛЕД ВКЛЮЧЕН</span><span class="ticker-sep">◆</span>
+        </div>
+    </div>
+</div>
+
+<!-- ─── INTRO ─── -->
+<div id="intro">
+    <p class="intro-text">
+        Обработката не е само за отстраняване на материал — тя е за разкриване на
+        <em>детайла, който винаги е бил вътре.</em>
+        Прецизността на индустрията, грижата на занаятчията.
+    </p>
+</div>
+
+<!-- ─── WORK ─── -->
+<section id="work">
+    <p class="section-label">Избрани проекти</p>
+    <div class="work-grid">
+
+        <div class="work-card wide" data-project="1">
+            <div class="work-card-img">
+                <div class="work-card-img-inner bg-1"><div class="img-label mono sm">Авиационна скоба</div></div>
+                <div class="work-card-overlay">
+                    <span class="overlay-label">ПРЕГЛЕД</span>
+                    <span class="overlay-hint">Натисни за детайли</span>
+                </div>
+            </div>
+            <div class="work-card-meta">
+                <div class="work-card-info">
+                    <h3>Авиационна монтажна скоба</h3>
+                    <p class="mono sm">6061-T6 · 4-осен контур · Твърдо анодиране</p>
+                </div>
+                <span class="work-card-year mono sm">2024</span>
+            </div>
+        </div>
+
+        <div class="work-card" data-project="2">
+            <div class="work-card-img">
+                <div class="work-card-img-inner bg-2"><div class="img-label mono sm">Корпус</div></div>
+                <div class="work-card-overlay">
+                    <span class="overlay-label">ПРЕГЛЕД</span>
+                    <span class="overlay-hint">Натисни за детайли</span>
+                </div>
+            </div>
+            <div class="work-card-meta">
+                <div class="work-card-info">
+                    <h3>Корпус за електроника</h3>
+                    <p class="mono sm">6061 · Джобове и резби · Прозрачно анодиране</p>
+                </div>
+                <span class="work-card-year mono sm">2024</span>
+            </div>
+        </div>
+
+        <div class="work-card" data-project="3">
+            <div class="work-card-img">
+                <div class="work-card-img-inner bg-3"><div class="img-label mono sm">Задвижване</div></div>
+                <div class="work-card-overlay">
+                    <span class="overlay-label">ПРЕГЛЕД</span>
+                    <span class="overlay-hint">Натисни за детайли</span>
+                </div>
+            </div>
+            <div class="work-card-meta">
+                <div class="work-card-info">
+                    <h3>Прототипен корпус на задвижване</h3>
+                    <p class="mono sm">7075-T6 · Прецизни допуски на отвори</p>
+                </div>
+                <span class="work-card-year mono sm">2024</span>
+            </div>
+        </div>
+
+        <div class="work-card" data-project="4">
+            <div class="work-card-img">
+                <div class="work-card-img-inner bg-4"><div class="img-label mono sm">Педали</div></div>
+                <div class="work-card-overlay">
+                    <span class="overlay-label">ПРЕГЛЕД</span>
+                    <span class="overlay-hint">Натисни за детайли</span>
+                </div>
+            </div>
+            <div class="work-card-meta">
+                <div class="work-card-info">
+                    <h3>Автомобилен педален комплект</h3>
+                    <p class="mono sm">6061 · Естетично шлайфане · Сатениран</p>
+                </div>
+                <span class="work-card-year mono sm">2024</span>
+            </div>
+        </div>
+
+        <div class="work-card" data-project="5">
+            <div class="work-card-img">
+                <div class="work-card-img-inner bg-5"><div class="img-label mono sm">Дрон рамка</div></div>
+                <div class="work-card-overlay">
+                    <span class="overlay-label">ПРЕГЛЕД</span>
+                    <span class="overlay-hint">Натисни за детайли</span>
+                </div>
+            </div>
+            <div class="work-card-meta">
+                <div class="work-card-info">
+                    <h3>Плоча за рамка на дрон</h3>
+                    <p class="mono sm">2024-T4 · Контурно рязане · Облекчаване</p>
+                </div>
+                <span class="work-card-year mono sm">2023</span>
+            </div>
+        </div>
+
+        <div class="work-card tall-wide" data-project="6">
+            <div class="work-card-img">
+                <div class="work-card-img-inner bg-6"><div class="img-label mono sm">Мед. приспособление</div></div>
+                <div class="work-card-overlay">
+                    <span class="overlay-label">ПРЕГЛЕД</span>
+                    <span class="overlay-hint">Натисни за детайли</span>
+                </div>
+            </div>
+            <div class="work-card-meta">
+                <div class="work-card-info">
+                    <h3>Приспособление за медицински уред</h3>
+                    <p class="mono sm">6061 · Прецизни отвори · Финиш Ra 0.4</p>
+                </div>
+                <span class="work-card-year mono sm">2023</span>
+            </div>
+        </div>
+
+        <div class="work-card" data-project="7">
+            <div class="work-card-img">
+                <div class="work-card-img-inner bg-7"><div class="img-label mono sm">Охладител</div></div>
+                <div class="work-card-overlay">
+                    <span class="overlay-label">ПРЕГЛЕД</span>
+                    <span class="overlay-hint">Натисни за детайли</span>
+                </div>
+            </div>
+            <div class="work-card-meta">
+                <div class="work-card-info">
+                    <h3>Масив от охладители</h3>
+                    <p class="mono sm">6063 · Профилиране на ламели · Естествен</p>
+                </div>
+                <span class="work-card-year mono sm">2023</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+    <p class="section-label">Услуги</p>
+    <div class="services-grid">
+
+        <div class="service-item">
+            <p class="service-num mono sm">01 —</p>
+            <h3 class="service-title">Прототипи<br>&amp; единични</h3>
+            <p class="service-desc">От STEP файл до готов детайл за дни. Работя в тясно сътрудничество с инженери и дизайнери, за да валидирам форма, размер и функция преди по-голяма серия. DFM обратна връзка включена стандартно.</p>
+            <div class="service-tags">
+                <span class="service-tag mono sm">1–5 бр.</span>
+                <span class="service-tag mono sm">Бърза доставка</span>
+                <span class="service-tag mono sm">DFM преглед</span>
+                <span class="service-tag mono sm">Прецизни допуски</span>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <p class="service-num mono sm">02 —</p>
+            <h3 class="service-title">Детайли<br>по поръчка</h3>
+            <p class="service-desc">Прецизна обработка за всяко приложение — автомобилна, роботика, аудио, индустриална. Всяка повърхност е обмислена, всеки ръб е целенасочен.</p>
+            <div class="service-tags">
+                <span class="service-tag mono sm">Всяка геометрия</span>
+                <span class="service-tag mono sm">Обработка на повърхности</span>
+                <span class="service-tag mono sm">Координация на анодиране</span>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <p class="service-num mono sm">03 —</p>
+            <h3 class="service-title">Малкосерийно<br>производство</h3>
+            <p class="service-desc">Постоянно качество в кратки до средни серии. Фиксирани настройки, документирани програми и повторяеми резултати. Идеален за стартъпи и малки производители.</p>
+            <div class="service-tags">
+                <span class="service-tag mono sm">10–200 бр.</span>
+                <span class="service-tag mono sm">Повторяема настройка</span>
+                <span class="service-tag mono sm">Протоколи от контрол</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ─── PROCESS ─── -->
+<section id="process">
+    <p class="section-label">Процес</p>
+    <div class="process-header">
+        <h2 class="process-title">
+            Всеки проект започва<br>с едно <em>ясно намерение.</em>
+        </h2>
+        <p class="process-intro">Прецизната обработка е съвместна работа. От първия разговор до финалния контрол ви държа информирани и включени. Без изненади — само отлично изпълнени детайли.</p>
+    </div>
+    <div class="process-steps">
+        <div class="process-step"><p class="step-num mono sm">01</p><h4 class="step-title">Задание &amp; Спецификация</h4><p class="step-desc">Разбиране на функцията, материала, допуските и срока на изпълнение.</p></div>
+        <div class="process-step"><p class="step-num mono sm">02</p><h4 class="step-title">DFM Преглед</h4><p class="step-desc">Обратна връзка за производимостта — установяване на проблеми преди рязане.</p></div>
+        <div class="process-step"><p class="step-num mono sm">03</p><h4 class="step-title">Материал &amp; Закрепване</h4><p class="step-desc">Избор на подходящата сплав, темпер и метод на закрепване за точност.</p></div>
+        <div class="process-step"><p class="step-num mono sm">04</p><h4 class="step-title">CAM Програмиране</h4><p class="step-desc">Стратегия за инструментален път, оптимизирана за качество на повърхността.</p></div>
+        <div class="process-step"><p class="step-num mono sm">05</p><h4 class="step-title">Обработка</h4><p class="step-desc">Прецизно изпълнение с контрол на размерите в критичните точки.</p></div>
+        <div class="process-step"><p class="step-num mono sm">06</p><h4 class="step-title">Контрол на качеството</h4><p class="step-desc">Пълна проверка по чертеж. Протоколи от контрол при поискване.</p></div>
+        <div class="process-step"><p class="step-num mono sm">07</p><h4 class="step-title">Доставка</h4><p class="step-desc">Защитена опаковка, сертификати за материал и пълна документация.</p></div>
+    </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+    <div class="about-img">
+        <canvas id="about-canvas"></canvas>
+        <div class="about-img-label mono sm">ОПЕРАТОР / МАШИНИСТ</div>
+    </div>
+    <div class="about-content">
+        <p class="section-label">За мен</p>
+        <h2 class="about-title">Прецизност, изградена от<br><em>години пред машината.</em></h2>
+        <p class="about-text">Аз съм фрийланс CNC машинист, специализиран в алуминий — от високоякостни 7075 авиационни сплави до универсалния 6061, намиращ се във всяка индустрия. Опитът ми обхваща авиационна екипировка, автомобилно прототипиране и специализирани индустриални детайли.</p>
+        <p class="about-text">Вярвам, че добрата обработка е невидима: детайл, който пасва перфектно, задържа допуска за целия си живот и не изисква извинения. Тази дисциплина я прилагам към всяка поръчка, независимо от размера.</p>
+        <dl class="about-specs">
+            <div class="spec-item"><dt class="mono sm">Машина</dt><dd>3-осен VMC, 4-та ос налична</dd></div>
+            <div class="spec-item"><dt class="mono sm">Допуски</dt><dd>±0.01 мм стандартно</dd></div>
+            <div class="spec-item"><dt class="mono sm">Материали</dt><dd>6061, 7075, 2024, 5083, 6063</dd></div>
+            <div class="spec-item"><dt class="mono sm">Серия</dt><dd>1 бр. — 200 бр.</dd></div>
+            <div class="spec-item"><dt class="mono sm">Срок</dt><dd>3–10 работни дни</dd></div>
+            <div class="spec-item"><dt class="mono sm">CAD формати</dt><dd>STEP, IGES, DXF, DWG</dd></div>
+        </dl>
+    </div>
+</section>
+
+<!-- ─── CAPABILITIES ─── -->
+<section id="capabilities">
+    <p class="section-label">Възможности</p>
+    <div class="capabilities-grid">
+        <div class="cap-item"><p class="cap-num">3–4</p><h4 class="cap-title mono sm">Осна фреза</h4><p class="cap-desc">3-осна стандартно; 4-та ротационна ос за сложна геометрия без препозициониране.</p></div>
+        <div class="cap-item"><p class="cap-num">±10</p><h4 class="cap-title mono sm">Микронна точност</h4><p class="cap-desc">Постоянна размерна точност на критични отвори, канали и съвместни повърхности.</p></div>
+        <div class="cap-item"><p class="cap-num">Ra 0.4</p><h4 class="cap-title mono sm">Качество на повърхността</h4><p class="cap-desc">Обработена, сатенирана или координирана с доставчици на анодиране и прахово боядисване.</p></div>
+        <div class="cap-item"><p class="cap-num" data-count-to="200">200</p><h4 class="cap-title mono sm">Макс. серия</h4><p class="cap-desc">От единични прототипи до кратки производствени серии с повторяеми настройки.</p></div>
+    </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+    <div class="contact-grid">
+
+        <!-- left: info + emblem -->
+        <div class="contact-info">
+            <p class="cta-label mono sm">// ЗАПОЧНИ ПРОЕКТ</p>
+            <h2 class="cta-title">Имате детайл<br>на <em>ум?</em></h2>
+            <p class="cta-sub">Изпратете STEP файл или чертеж — ще отговоря с оферта в рамките на 24 часа. NDA при поискване.</p>
+
+            <ul class="contact-details">
+                <li class="contact-detail-item">
+                    <span class="contact-detail-label mono sm">ТЕЛЕФОН</span>
+                    <a href="tel:+359880000000" class="contact-detail-value">+359 88 000 0000</a>
+                    <a href="tel:+359880000000" class="btn-call">
+                        <span class="call-icon">📞</span>
+                        <span class="mono sm">ОБАДИ СЕ</span>
+                    </a>
+                </li>
+                <li class="contact-detail-item">
+                    <span class="contact-detail-label mono sm">ИМЕЙЛ</span>
+                    <a href="mailto:office@setacam.com" class="contact-detail-value">office@setacam.com</a>
+                </li>
+                <li class="contact-detail-item">
+                    <span class="contact-detail-label mono sm">ОТГОВОР</span>
+                    <span class="contact-detail-value">В рамките на 24 часа</span>
+                </li>
+            </ul>
+
+            <div class="contact-specs mono sm">
+                <span>ОТГОВОР &lt; 24Ч</span><span class="ticker-sep">·</span>
+                <span>NDA ПРИ ПОИСКВАНЕ</span><span class="ticker-sep">·</span>
+                <span>БЕЗПЛАТЕН DFM ПРЕГЛЕД</span>
+            </div>
+
+            <img src="emblem.svg" class="contact-emblem" alt="" aria-hidden="true">
+        </div>
+
+        <!-- right: form -->
+        <div class="contact-form-wrap">
+            <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label mono sm" for="cf-name">Вашето Име *</label>
+                        <input class="form-input" type="text" id="cf-name" name="name" placeholder="Иван Иванов" required autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label mono sm" for="cf-email">Имейл *</label>
+                        <input class="form-input" type="email" id="cf-email" name="email" placeholder="ivan@firma.bg" required autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label mono sm" for="cf-phone">Телефон</label>
+                        <input class="form-input" type="tel" id="cf-phone" name="phone" placeholder="+359 88 000 0000" autocomplete="tel">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label mono sm" for="cf-type">Вид проект</label>
+                        <select class="form-input form-select" id="cf-type" name="project_type">
+                            <option value="" disabled selected>Изберете...</option>
+                            <option value="prototype">Прототип / Единичен детайл</option>
+                            <option value="custom">Детайли по поръчка</option>
+                            <option value="series">Малкосерийно производство</option>
+                            <option value="other">Друго</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mono sm" for="cf-message">Описание на проекта *</label>
+                    <textarea class="form-input form-textarea" id="cf-message" name="message" placeholder="Материал, допуски, финиш, количество, срок..." required rows="5"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mono sm" for="cf-file">Прикачи файл (STEP · DXF · DWG · PDF)</label>
+                    <label class="form-file-label" for="cf-file" id="cf-file-label">
+                        <span class="form-file-icon mono sm">⊕</span>
+                        <span class="form-file-text mono sm" id="cf-file-text">ИЗБЕРИ ФАЙЛ ИЛИ ПЛЪЗНИ ТУК</span>
+                    </label>
+                    <input class="form-file-input" type="file" id="cf-file" name="file" accept=".step,.stp,.iges,.igs,.dxf,.dwg,.pdf">
+                </div>
+
+                <button class="form-submit btn" type="submit" id="cf-submit">
+                    <span class="submit-text">Изпрати заявка</span>
+                    <span class="submit-loading" hidden>Изпращане...</span>
+                </button>
+
+                <div class="form-success" id="form-success" hidden>
+                    <span class="mono sm">✓ ЗАЯВКАТА Е ИЗПРАТЕНА</span>
+                    <p>Ще се свържа с вас в рамките на 24 часа.</p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <a href="#" class="footer-logo"><img src="logo-white.svg" alt="Setacam" class="footer-logo-img"></a>
+    <ul class="footer-links">
+        <li><a href="#work">Проекти</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#process">Процес</a></li>
+        <li><a href="#contact">Контакт</a></li>
+    </ul>
+    <p class="footer-copy mono sm">© 2024 Setacam — Фрийланс алуминиева обработка</p>
+</footer>
+
+<!-- ─── SCROLL TO TOP ─── -->
+<button class="scroll-top" id="scroll-top" aria-label="Към началото">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12V2M7 2L2 7M7 2L12 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<!-- ─── PROJECT MODAL ─── -->
+<div id="project-modal" class="project-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="project-modal-backdrop"></div>
+    <div class="project-modal-panel">
+        <button class="modal-close" id="modal-close" aria-label="Затвори">
+            <span></span><span></span>
+        </button>
+        <div class="modal-img-wrap">
+            <div class="modal-img" id="modal-img"></div>
+        </div>
+        <div class="modal-body">
+            <p class="modal-label mono sm" id="modal-label"></p>
+            <h2 class="modal-title" id="modal-title"></h2>
+            <p class="modal-desc" id="modal-desc"></p>
+            <dl class="modal-specs" id="modal-specs"></dl>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
