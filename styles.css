@@ -743,25 +743,67 @@ section {
 }
 
 .bg-1 {
-  background-image: url("hero-bg.png");
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(107, 163, 224, 0.35) 0%,
+      rgba(16, 22, 36, 0.6) 100%
+    ),
+    url("hero-bg.png");
 }
 .bg-2 {
-  background-image: url("hero-bg.png");
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(180, 130, 55, 0.38) 0%,
+      rgba(16, 22, 36, 0.6) 100%
+    ),
+    url("hero-bg.png");
 }
 .bg-3 {
-  background-image: url("hero-bg.png");
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(55, 175, 145, 0.32) 0%,
+      rgba(16, 22, 36, 0.6) 100%
+    ),
+    url("hero-bg.png");
 }
 .bg-4 {
-  background-image: url("hero-bg.png");
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(200, 85, 55, 0.32) 0%,
+      rgba(16, 22, 36, 0.6) 100%
+    ),
+    url("hero-bg.png");
 }
 .bg-5 {
-  background-image: url("hero-bg.png");
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(80, 145, 210, 0.38) 0%,
+      rgba(16, 22, 36, 0.6) 100%
+    ),
+    url("hero-bg.png");
 }
 .bg-6 {
-  background-image: url("hero-bg.png");
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(140, 85, 200, 0.32) 0%,
+      rgba(16, 22, 36, 0.6) 100%
+    ),
+    url("hero-bg.png");
 }
 .bg-7 {
-  background-image: url("hero-bg.png");
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(170, 110, 45, 0.36) 0%,
+      rgba(16, 22, 36, 0.6) 100%
+    ),
+    url("hero-bg.png");
 }
 
 .work-card-img-inner::before {
@@ -786,7 +828,9 @@ section {
   transition: opacity 0.25s;
   pointer-events: none;
 }
-.work-card:hover .img-label { opacity: 0; }
+.work-card:hover .img-label {
+  opacity: 0;
+}
 
 .work-card-overlay {
   position: absolute;
@@ -802,7 +846,9 @@ section {
   background: rgba(22, 32, 52, 0.55);
   backdrop-filter: blur(2px);
 }
-.work-card:hover .work-card-overlay { opacity: 1; }
+.work-card:hover .work-card-overlay {
+  opacity: 1;
+}
 .work-card-overlay .overlay-label {
   font-family: var(--mono);
   font-size: 11px;
@@ -1148,7 +1194,7 @@ section {
   right: -3rem;
   width: 340px;
   height: auto;
-  opacity: 0.12;
+  opacity: 1;
   pointer-events: none;
   user-select: none;
   filter: brightness(0) invert(1);
@@ -1217,7 +1263,10 @@ a.contact-detail-value:hover {
   text-transform: uppercase;
   font-family: var(--mono);
   font-size: 11px;
-  transition: background 0.25s, color 0.25s, border-color 0.25s;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s;
   cursor: none;
 }
 .btn-call:hover {
@@ -1282,7 +1331,9 @@ a.contact-detail-value:hover {
   font-weight: 300;
   padding: 0.9rem 1.1rem;
   outline: none;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
   width: 100%;
   appearance: none;
   -webkit-appearance: none;
@@ -1317,7 +1368,9 @@ a.contact-detail-value:hover {
   border: 1px dashed var(--rule);
   padding: 1.2rem 1.4rem;
   cursor: none;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
   background: var(--bg);
 }
 .form-file-label:hover {
@@ -1393,7 +1446,11 @@ a.contact-detail-value:hover {
   z-index: 400;
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 0.35s, transform 0.35s, background 0.2s, border-color 0.2s;
+  transition:
+    opacity 0.35s,
+    transform 0.35s,
+    background 0.2s,
+    border-color 0.2s;
   pointer-events: none;
 }
 .scroll-top.visible {
@@ -1512,7 +1569,9 @@ footer {
   border: 1px solid var(--rule);
   transform: translateY(40px);
   opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s;
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.4s;
 }
 .project-modal.open .project-modal-panel {
   transform: translateY(0);
@@ -1539,9 +1598,15 @@ footer {
   background: var(--ink-mid);
   transition: background 0.2s;
 }
-.modal-close span:first-child { transform: rotate(45deg); }
-.modal-close span:last-child  { transform: rotate(-45deg); }
-.modal-close:hover span { background: var(--accent); }
+.modal-close span:first-child {
+  transform: rotate(45deg);
+}
+.modal-close span:last-child {
+  transform: rotate(-45deg);
+}
+.modal-close:hover span {
+  background: var(--accent);
+}
 .modal-img-wrap {
   width: 100%;
   aspect-ratio: 16/9;
@@ -1555,7 +1620,9 @@ footer {
   filter: brightness(0.75);
   transition: transform 0.6s ease;
 }
-.modal-img:hover { transform: scale(1.03); }
+.modal-img:hover {
+  transform: scale(1.03);
+}
 .modal-body {
   padding: 2.5rem;
 }
@@ -1684,6 +1751,21 @@ footer {
   }
 }
 @media (max-width: 640px) {
+  .vscrub-wrap {
+    height: 140vh;
+  }
+  .vscrub-overlay {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    font-size: 9px;
+  }
+  .vscrub-progress-wrap {
+    left: 1.5rem;
+    bottom: 1.5rem;
+  }
+  .vscrub-bar {
+    width: 120px;
+  }
   .form-row {
     grid-template-columns: 1fr;
   }

@@ -143,9 +143,14 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-mid);
+  flex-wrap: nowrap;
+}
+.blog-card-meta > * {
+  white-space: nowrap;
 }
 .blog-card-date {
   color: var(--accent);
+  white-space: nowrap;
 }
 .blog-card-title {
   font-family: var(--serif);
@@ -380,10 +385,7 @@
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  .sidebar-sticky {
-    position: static;
-  }
-  .toc {
+  .post-sidebar {
     display: none;
   }
 }
@@ -408,5 +410,9 @@
   }
   .related-posts {
     padding: 3rem 1.5rem 4rem;
+  }
+  .blog-card-meta {
+    letter-spacing: 0.04em;
+    font-size: 10px;
   }
 }

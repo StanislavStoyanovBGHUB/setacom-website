@@ -8,7 +8,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="blog.css?v=2">
+    <style>
+      .blog-card-meta { flex-wrap: nowrap; letter-spacing: 0.05em; }
+      .blog-card-meta > * { white-space: nowrap; }
+      .blog-card-date { white-space: nowrap; }
+      @media (max-width: 768px) {
+        .blog-card-meta { font-size: 10px; letter-spacing: 0.03em; }
+      }
+    </style>
 </head>
 <body>
 
@@ -191,7 +199,7 @@
         <li><a href="index.html#process">Процес</a></li>
         <li><a href="index.html#contact">Контакт</a></li>
     </ul>
-    <p class="footer-copy mono sm">© 2024 Setacam — Фрийланс алуминиева обработка</p>
+    <p class="footer-copy mono sm">© 2025 Setacam — Фрийланс алуминиева обработка</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
