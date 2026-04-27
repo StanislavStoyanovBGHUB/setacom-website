@@ -347,17 +347,12 @@ function initVideoScrub() {
     if (!wrap || !video || !canvas) return;
 
     const ctx = canvas.getContext('2d');
-    let targetTime = 0;
-    let isSeeking  = false;
 
-    /* ── size canvas buffer to fill viewport ── */
     function resize() {
         canvas.width  = window.innerWidth;
         canvas.height = window.innerHeight;
-        paint();
     }
 
-    /* ── draw with object-fit:cover math ── */
     function paint() {
         if (!video.videoWidth) return;
         const cw = canvas.width, ch = canvas.height;
@@ -367,30 +362,25 @@ function initVideoScrub() {
         ctx.drawImage(video, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
     }
 
-    /* ── seek-then-paint: only one seek in flight at a time ── */
-    let seekTimer = null;
-    function seekTo(t) {
-        if (isSeeking) return;
-        if (Math.abs(video.currentTime - t) < 0.016) return;
-        isSeeking = true;
-        clearTimeout(seekTimer);
-        /* safety: if seeked never fires (some browsers/codecs), unlock after 300ms */
-        seekTimer = setTimeout(() => { isSeeking = false; seekTo(targetTime); }, 300);
-        video.currentTime = t;
+    /* continuous RAF loop — draws whatever frame the video is currently at,
+       decoupled from seek events so rendering never stalls */
+    (function drawLoop() { paint(); requestAnimationFrame(drawLoop); })();
+
+    /* throttle seeks to one per animation frame — prevents saturating the
+       seek queue on rapid scroll, and avoids the isSeeking-stuck bug on iOS */
+    let targetTime  = 0;
+    let seekPending = false;
+    function scheduleSeek() {
+        if (seekPending) return;
+        seekPending = true;
+        requestAnimationFrame(() => {
+            seekPending = false;
+            if (Math.abs(video.currentTime - targetTime) > 0.01) {
+                video.currentTime = targetTime;
+            }
+        });
     }
 
-    video.addEventListener('seeked', () => {
-        clearTimeout(seekTimer);
-        paint();
-        isSeeking = false;
-        /* chase if target moved while we were seeking */
-        if (Math.abs(targetTime - video.currentTime) > 0.016) seekTo(targetTime);
-    });
-
-    /* paint first frame as soon as data arrives */
-    video.addEventListener('loadeddata', () => { resize(); paint(); });
-
-    /* ── set up ScrollTrigger once metadata is known ── */
     function setupST() {
         if (prog) prog.classList.add('ready');
         resize();
@@ -398,12 +388,12 @@ function initVideoScrub() {
 
         ScrollTrigger.create({
             trigger: wrap,
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 0.8,          /* GSAP lerps the progress → smooth scrub */
+            start:  'top top',
+            end:    'bottom bottom',
+            scrub:  0.8,
             onUpdate: self => {
-                targetTime = self.progress * video.duration;
-                seekTo(targetTime);
+                targetTime = self.progress * (video.duration || 0);
+                scheduleSeek();
                 const p = Math.round(self.progress * 100);
                 if (fill)  fill.style.width = p + '%';
                 if (pctEl) pctEl.textContent = p + '%';
@@ -411,11 +401,14 @@ function initVideoScrub() {
         });
     }
 
-    /* handle race: metadata may already be loaded when initAll() runs.
-       defer by one rAF so layout is complete before reading dimensions. */
     function init() {
+        /* play+pause primes the seek pipeline on iOS Safari (muted video,
+           no user gesture required) — without this, currentTime assignment
+           is silently ignored on first touch */
+        video.play().then(() => { video.pause(); video.currentTime = 0; }).catch(() => {});
         requestAnimationFrame(setupST);
     }
+
     if (video.readyState >= 1) {
         init();
     } else {
