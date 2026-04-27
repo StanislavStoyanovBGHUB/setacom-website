@@ -347,6 +347,9 @@ function initVideoScrub() {
     if (!wrap || !video || !canvas) return;
 
     const ctx = canvas.getContext('2d');
+    let targetTime = 0;
+    let isSeeking  = false;
+    let safeTimer  = null;
 
     function resize() {
         canvas.width  = window.innerWidth;
@@ -362,38 +365,36 @@ function initVideoScrub() {
         ctx.drawImage(video, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
     }
 
-    /* continuous RAF loop — draws whatever frame the video is currently at,
-       decoupled from seek events so rendering never stalls */
-    (function drawLoop() { paint(); requestAnimationFrame(drawLoop); })();
-
-    /* throttle seeks to one per animation frame — prevents saturating the
-       seek queue on rapid scroll, and avoids the isSeeking-stuck bug on iOS */
-    let targetTime  = 0;
-    let seekPending = false;
-    function scheduleSeek() {
-        if (seekPending) return;
-        seekPending = true;
-        requestAnimationFrame(() => {
-            seekPending = false;
-            if (Math.abs(video.currentTime - targetTime) > 0.01) {
-                video.currentTime = targetTime;
-            }
-        });
+    /* one seek in flight at a time; paint only when the decoded frame is ready */
+    function seekTo(t) {
+        if (isSeeking) return;
+        if (Math.abs(video.currentTime - t) < 0.016) return;
+        isSeeking = true;
+        clearTimeout(safeTimer);
+        safeTimer = setTimeout(() => { isSeeking = false; seekTo(targetTime); }, 200);
+        video.currentTime = t;
     }
+
+    video.addEventListener('seeked', () => {
+        clearTimeout(safeTimer);
+        paint();
+        isSeeking = false;
+        if (Math.abs(targetTime - video.currentTime) > 0.016) seekTo(targetTime);
+    });
 
     function setupST() {
         if (prog) prog.classList.add('ready');
         resize();
-        window.addEventListener('resize', resize, { passive: true });
+        paint();
+        window.addEventListener('resize', () => { resize(); paint(); }, { passive: true });
 
         ScrollTrigger.create({
             trigger: wrap,
-            start:  'top top',
-            end:    'bottom bottom',
-            scrub:  0.8,
+            start:   'top top',
+            end:     'bottom bottom',
             onUpdate: self => {
                 targetTime = self.progress * (video.duration || 0);
-                scheduleSeek();
+                seekTo(targetTime);
                 const p = Math.round(self.progress * 100);
                 if (fill)  fill.style.width = p + '%';
                 if (pctEl) pctEl.textContent = p + '%';
@@ -402,9 +403,7 @@ function initVideoScrub() {
     }
 
     function init() {
-        /* play+pause primes the seek pipeline on iOS Safari (muted video,
-           no user gesture required) — without this, currentTime assignment
-           is silently ignored on first touch */
+        /* play+pause primes the iOS Safari seek pipeline */
         video.play().then(() => { video.pause(); video.currentTime = 0; }).catch(() => {});
         requestAnimationFrame(setupST);
     }
